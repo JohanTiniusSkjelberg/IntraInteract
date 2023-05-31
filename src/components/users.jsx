@@ -3,8 +3,6 @@ import { AuthContext } from "../context/authContext";
 import { ChatContext } from "../context/chatContext";
 import { useContext, useEffect, useState } from "react";
 import firebase from "../firebase";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 import Skeleton from "./skeleton";
 const db = firebase.firestore();
 
@@ -14,8 +12,6 @@ function Users() {
     const { authUser } = useContext(AuthContext)
     const { data,dispatch } = useContext(ChatContext)
     
-    const navigate = useNavigate();
-
     const handleSelect = (u) => {
         dispatch({type: 'CHANGE_USER', payload: u})
     }
@@ -30,12 +26,6 @@ function Users() {
         authUser?.uid && getChats();
     }, [authUser?.uid])
     
-    function handleSignOut() {
-        firebase.auth().signOut().then(() => {
-            Cookies.remove('loggedin');
-            navigate('/')
-        })
-    }
     if (isLoading) {
         return (
             <Skeleton />
@@ -56,11 +46,6 @@ function Users() {
                       </div>
                   </div>
               ))}
-        </div>
-        <div className="flex gap-2 items-center ml-2 mb-2">
-            <img className="object-cover bg-[#ddddf7] h-8 w-8 rounded-full" src={authUser?.photoURL} alt=""></img>
-            <span className="text-gray-300">{authUser?.displayName}</span>
-            <button onClick={handleSignOut} className="bg-[#5d5b8d] text-[#ddddf7] text-xs p-1">logout</button>
         </div>
     </div>
   )
