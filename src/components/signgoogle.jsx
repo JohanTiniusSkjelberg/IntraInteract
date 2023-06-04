@@ -25,7 +25,7 @@ function SignIn() {
                 Navigate('/chat');
             }
             else{
-                Navigate('/chat');
+                Navigate('/login');
             }
             Cookies.set('loggedin', 'true');
         }).catch((error) => {

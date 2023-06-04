@@ -68,7 +68,6 @@ function Search() {
     dispatch({ type: 'CHANGE_USER', payload: user })
     setUser(null);
     setUsername('');
-    
   }
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();

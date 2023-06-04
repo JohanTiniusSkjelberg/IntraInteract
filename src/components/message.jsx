@@ -38,7 +38,7 @@ function Message({ message }) {
                 <span className="font-light text-md">{difference}</span>
             </div>
             <div style={{ maxWidth: "65%" }} className={"flex flex-col gap-1 " + (message.senderId === authUser.uid ? "items-end" : "")}>
-                <p className={"max-w-max py-1.5 pl-2 pr-2 rounded-md " + (message.senderId === authUser.uid ? 'bg-[#4AA4FF] text-white' : 'bg-white text-gray-800')}>{message.text}</p>
+                {message.text && <p className={"max-w-max py-1.5 pl-2 pr-2 rounded-md " + (message.senderId === authUser.uid ? 'bg-[#4AA4FF] text-white' : 'bg-white text-gray-800')}>{message.text}</p>}
                 {message.img && <img className="w-1/2 rounded" src={message.img} alt=""></img>}
             </div>
         </div>
